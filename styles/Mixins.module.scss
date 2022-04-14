@@ -1,0 +1,43 @@
+// Mixins
+$phone-only: 599px;
+$tablet-portrait-up: 768px;
+$tablet-landscape-up: 900px;
+$ipad-pro: 1024px;
+$desktop-up: 1200px;
+
+// @mixin tablet {
+//   @media (min-width: #{$tablet-landscape-up}) and (max-width: #{$desktop-up - 1px}) {
+//     @content;
+//   }
+// }
+
+@mixin phone-only {
+  @media screen and (max-width: #{$phone-only}) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait-up {
+  @media screen and (min-width: #{$tablet-portrait-up}) {
+    @content;
+  }
+}
+
+// 1024x1366 used for the hero
+@mixin ipad-pro {
+  @media screen and (min-width: #{$ipad-pro}) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape-up {
+  @media screen and (min-width: #{$tablet-landscape-up}) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media screen and (min-width: #{$desktop-up}) {
+    @content;
+  }
+}

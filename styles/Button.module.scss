@@ -1,0 +1,72 @@
+.btn {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: -2px;
+}
+
+.btn-cta {
+  font-size: 1.1rem;
+  background-color: var(--color-white);
+  padding: 0.9rem 1.8rem;
+  color: var(--color-btn);
+  border-radius: 0.4rem;
+  transition: background-color 0.5s;
+}
+
+.btn-cta:hover,
+.btn-cta:focus {
+  color: var(--btn-text-white);
+  background-color: var(--secondary-font-color);
+}
+
+.btn-body {
+  color: var(--secondary-font-color);
+  font-size: 1.5rem;
+  position: relative;
+  transition: color 0.5s;
+}
+
+.btn-body-card {
+  font-size: 1.2rem;
+}
+
+.btn-body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--secondary-font-color);
+  transition: background-color 0.5s;
+}
+
+.btn-body:hover,
+.btn-body:focus {
+  color: var(--main-font-color-dark);
+}
+
+.btn-body:hover::before,
+.btn-body:focus::before {
+  background-color: var(--main-font-color-dark);
+}
+
+.btn-newsletter {
+  background-color: transparent;
+  border: none;
+  color: var(--color-btn);
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 1px 0.6rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 20.5rem;
+}
+
+@media screen and (min-width: 900px) {
+  .btn-newsletter {
+    margin-left: 17.5rem;
+  }
+}

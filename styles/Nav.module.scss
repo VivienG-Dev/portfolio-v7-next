@@ -1,0 +1,221 @@
+@import "./Mixins.module.scss";
+
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+
+  &--pinned {
+    transform: translateY(0%);
+  }
+
+  &--unpinned {
+    transform: translateY(-100%);
+  }
+}
+
+.nav {
+  height: 7.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    img {
+      width: 130px;
+      height: 32px;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 800;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s;
+  }
+
+  &-list {
+    list-style: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: var(--color-background-nav);
+    //background: var(--color-background-nav) url("../../img/vivieng-g-logo.png") left 5rem top 2rem no-repeat;
+    padding: 4.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 900;
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+
+    @include tablet-landscape-up {
+      position: initial;
+      width: initial;
+      height: initial;
+      background-color: transparent;
+      padding: 0;
+      justify-content: initial;
+      flex-direction: row;
+      transform: initial;
+      transition: initial;
+    }
+  }
+
+  &-item {
+    &:after {
+      content: "";
+      /* This is necessary for the pseudo element to work. */
+      display: block;
+      /* This will put the pseudo element on its own line. */
+      margin: 0 auto;
+      /* This will center the border. */
+      width: 50%;
+      /* Change this to whatever width you want. */
+      padding-top: 20px;
+      /* This creates some space between the element and the border. */
+      //border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      /* This creates the border. Replace black with whatever color you want. */
+
+      @include tablet-landscape-up {
+        border: none;
+        margin: 0;
+        content: none;
+      }
+    }
+
+    #darkmode:before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f186";
+      font-weight: 900;
+    }
+
+    &--moon {
+      #darkmode:before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f185";
+        font-weight: 900;
+      }
+    }
+
+    @include tablet-landscape-up {
+      &:last-child {
+        margin-right: 0;
+      }
+
+      border: none;
+      margin: 0 2.4rem;
+    }
+  }
+
+  &-link {
+    display: flex;
+    justify-content: center;
+    color: var(--text-nav-mobile);
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-right: -2px;
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--secondary-font-color);
+    }
+
+    @include tablet-landscape-up {
+      font-size: 1.3rem;
+      color: var(--main-font-color-dark);
+      position: relative;
+      display: block;
+      transition: 0.5s;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 2px;
+        top: 100%;
+        left: 0;
+        background: var(--secondary-font-color);
+        transition: transform 0.5s;
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    @include desktop-up {
+      font-size: 1.8rem;
+    }
+  }
+
+  @include tablet-landscape-up {
+    justify-content: space-between;
+    //position: fixed;
+
+    .active {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-white);
+        left: 0;
+        top: 100%;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  color: var(--main-font-color-dark);
+  font-size: 2.2rem;
+  right: 2.5rem;
+  cursor: pointer;
+  z-index: 1000;
+
+  .fa-times {
+    display: none;
+    color: var(--text-nav-mobile);
+  }
+
+  @include tablet-landscape-up {
+    display: none;
+  }
+}
+
+// Special class for the JavaScript
+
+.open {
+  .fa-times {
+    display: block;
+  }
+
+  .fa-bars {
+    display: none;
+  }
+
+  .nav-list {
+    transform: translateX(0);
+  }
+
+  .nav::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
